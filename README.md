@@ -12,7 +12,7 @@ Run a server in this directory, e.g. using python:
 python -m SimpleHTTPServer 8000
 ```
 
-In browswer:
+In browser:
 
 ```
 localhost:8000/
