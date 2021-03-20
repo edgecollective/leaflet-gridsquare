@@ -1,5 +1,7 @@
 # leaflet-gridsquare
 
+![](./belfast.png)
+
 Uses a slightly-modified version of the [Leaflet Maidenhead Code by ha8tks](https://github.com/ha8tks/Leaflet.Maidenhead) -- with option to use the original!  
 
 ## Using
