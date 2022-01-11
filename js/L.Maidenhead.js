@@ -52,12 +52,13 @@ L.Maidenhead = L.LayerGroup.extend({
 		var n = bounds.getNorth();
         var s = bounds.getSouth();
         
-
+/*
         L.circle([n,w], 5, {
             color: 'green',
             fillColor: 'green',
             fillOpacity: 0.8
         }).addTo(map);
+*/
 
 		if (zoom==1) {var c = 2;} else {var c = 0.1;}
 		if (n > 85) n = 85;
