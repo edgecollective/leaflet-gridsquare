@@ -24,8 +24,16 @@
 <div id="map" style="width: 1500px; height: 1000px;"></div>
 <script>
 
-    var start_lat=44.42849861396812;
-    var start_lon=-69.00385950557286;
+    // conant
+	var start_lat=42.41208137430952;
+	var start_lon=-71.29818102489375;
+	
+	// parker	
+	//var start_lat = 42.42177320792855;
+	//var start_lon = -71.14140650080418;
+
+    //var start_lat=44.42849861396812;
+    //var start_lon=-69.00385950557286;
     var start_zoom = 15;
 
 	var map = L.map('map').setView([start_lat,start_lon], start_zoom);
@@ -34,9 +42,15 @@
 
     var default_tiles = 'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw';
     var topo_tiles = 'https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png';
+	//var toner_tiles = 'http://a.tile.stamen.com/toner/${z}/${x}/${y}.png';
 
-	L.tileLayer(topo_tiles, {
-		maxZoom: 18,
+	 var toner_tiles = 'https://stamen-tiles.a.ssl.fastly.net/toner/{z}/{x}/{y}.png';
+     var terrain_tiles = 'https://stamen-tiles.a.ssl.fastly.net/terrain/{z}/{x}/{y}.jpg';
+
+	var my_tiles = terrain_tiles;
+	//L.tileLayer(topo_tiles, {
+    L.tileLayer(my_tiles, {
+				maxZoom: 18,
 		attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
 			'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
 		id: 'mapbox/streets-v11',
