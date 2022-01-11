@@ -90,7 +90,8 @@ L.Maidenhead = L.LayerGroup.extend({
             var b1 = [[lat,lon],[lat+unit/2,lon+unit]];
             var b2 = [[lat+unit/2,lon],[lat+unit,lon+unit]];
             var b3 = [[lat,lon+unit],[lat+unit/2,lon+(unit*2)]];
-
+            
+            var b4 = [[lat,lon],[lat + unit/4,lon+unit]];
 
             var squareLeft = lon;
             var squareBottom = lat;
@@ -106,8 +107,12 @@ L.Maidenhead = L.LayerGroup.extend({
             var subcolor = 'rgba(255, 0, 0, 0.4)';
             var dashArray = '10, 10';
             this.addLayer(L.rectangle(b1, {color: subcolor, weight: 1, dashArray: dashArray, dashOffset: '0', fill:false, interactive: false}));
+            
             this.addLayer(L.rectangle(b2, {color: subcolor, weight: 1, dashArray: dashArray, dashOffset: '0', fill:false, interactive: false}));
+            
             this.addLayer(L.rectangle(b3, {color: subcolor, weight: 1, dashArray: dashArray, dashOffset: '0', fill:false, interactive: false}));
+
+            //this.addLayer(L.rectangle(b4, {color: subcolor, weight: 1, dashArray: dashArray, dashOffset: '0', fill:false, interactive: false}));
 
             this.addLayer(L.rectangle(bounds, {color: this.options.color, weight: 1, fill:false, interactive: false}));
 			//var pont = map.latLngToLayerPoint([lat,lon]);
