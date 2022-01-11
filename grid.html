@@ -24,20 +24,17 @@
 <div id="map" style="width: 1500px; height: 1000px;"></div>
 <script>
 
-    // 10 conant
+    // conant
 	var start_lat=42.41208137430952;
 	var start_lon=-71.29818102489375;
-
-	// 23 conant
-	var start_lat=42.40977627033596;
-	var start_lon=-71.2984418248693;
+	
 	// parker	
 	//var start_lat = 42.42177320792855;
 	//var start_lon = -71.14140650080418;
 
     //var start_lat=44.42849861396812;
     //var start_lon=-69.00385950557286;
-    var start_zoom = 17;
+    var start_zoom = 15;
 
 	var map = L.map('map').setView([start_lat,start_lon], start_zoom);
 
@@ -61,13 +58,12 @@
 		zoomOffset: -1
 	}).addTo(map);
 
-    /* L.maidenhead({
+    L.maidenhead({
                 //color : 'rgba(255, 0, 0, 0.4)'
                 color : 'rgba(0, 0, 0, 1)'
             }).addTo(map);
-*/
- 
-/*
+
+    /*
 	L.marker([51.5, -0.09]).addTo(map)
 		.bindPopup("<b>Hello world!</b><br />I am a popup.").openPopup();
 
