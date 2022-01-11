@@ -102,14 +102,14 @@ L.Maidenhead = L.LayerGroup.extend({
             
             
             
-            
-            var subcolor = 'rgba(255, 0, 0, 0.4)';
+            boundscolor =  'rgba(255, 0, 0, 0.4)';
+            var subcolor = 'rgba(0, 0, 0, 1)';
             var dashArray = '10, 10';
-            this.addLayer(L.rectangle(b1, {color: subcolor, weight: 1, dashArray: dashArray, dashOffset: '0', fill:false, interactive: false}));
-            this.addLayer(L.rectangle(b2, {color: subcolor, weight: 1, dashArray: dashArray, dashOffset: '0', fill:false, interactive: false}));
-            this.addLayer(L.rectangle(b3, {color: subcolor, weight: 1, dashArray: dashArray, dashOffset: '0', fill:false, interactive: false}));
+            this.addLayer(L.rectangle(b1, {color: subcolor, weight: .5, dashArray: dashArray, dashOffset: '0', fill:false, interactive: false}));
+            this.addLayer(L.rectangle(b2, {color: subcolor, weight: .5, dashArray: dashArray, dashOffset: '0', fill:false, interactive: false}));
+            this.addLayer(L.rectangle(b3, {color: subcolor, weight: .5, dashArray: dashArray, dashOffset: '0', fill:false, interactive: false}));
 
-            this.addLayer(L.rectangle(bounds, {color: this.options.color, weight: 1, fill:false, interactive: false}));
+            this.addLayer(L.rectangle(bounds, {color: this.options.color, weight: .5, fill:false, interactive: false}));
 			//var pont = map.latLngToLayerPoint([lat,lon]);
 			//console.log(pont.x);
 			this.addLayer(this._getLabel(lon+unit-(unit/lcor),lat+(unit/2)+(unit/lcor*c)));
