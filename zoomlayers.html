@@ -34,7 +34,7 @@
     <input type="button" onclick="zoom10Conant()" value="10 Conant"/>
     <input type="button" onclick="zoom23Conant()" value="23 Conant"/>
     <br/>
-    <b>Annotations:</b>
+    <b>Annotations:</b> (Click and draw to annotate)
     <input type="button" onclick="clearLines()" value="Undo Last Annotation"/>
     <br/>
     <b>Gridsquare:</b>
@@ -233,7 +233,8 @@ var myPolyline;
 map.on('click', function() {
   paintMode = !paintMode;
   if (paintMode) {
-    myPolyline = L.polyline([]).addTo(map);
+    myPolyline = L.polyline([], {weight:1, opacity:1, color:'red'}).addTo(map);
+    //myPolyline = L.polyline([]).addTo(map);
     polylines.push(myPolyline);
   }
 })
