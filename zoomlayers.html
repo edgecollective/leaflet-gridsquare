@@ -3,7 +3,7 @@
 <html>
 <head>
 	
-	<title>Leaflet-Gridsquare</title>
+	<title>Treasure Map</title>
 
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,23 +26,25 @@
     <input type="button" onclick="zoomTo()" value="zoomTo"/>
     <br/>
     -->
-    Lat, Lon: <input type="text" name="latlon" id="latlon"/>
+    <!--Lat, Lon: <input type="text" name="latlon" id="latlon"/>
     <input type="button" onclick="zoomParse()" value="add marker"/>
     <br/>
     <br/>
+    -->
+
     <b>Zoom to:</b>
     <input type="button" onclick="zoom10Conant()" value="10 Conant"/>
     <input type="button" onclick="zoom23Conant()" value="23 Conant"/>
-    <br/>
+    
     <b>Annotations:</b> (Click and draw to annotate)
-    <input type="button" onclick="clearLines()" value="Undo Last Annotation"/>
-    <br/>
+    <input type="button" onclick="clearLines()" value="Undo Last Annotation"/> (or press Ctrl-z)
+    
     <b>Gridsquare:</b>
     <input type="button" onclick="showGrid()" value="show"/> <input type="button" onclick="hideGrid()" value="hide"/>
-    <br/>
+    
 
 <!--<div id="map" style="width: 1500px; height: 1000px;"></div>-->
-<div id="map" style="width: 1300px; height: 500px;"></div>
+<div id="map" style="width: 600px; height: 780px;"></div>
 <script>
 
     // conant
@@ -233,7 +235,7 @@ var myPolyline;
 map.on('click', function() {
   paintMode = !paintMode;
   if (paintMode) {
-    myPolyline = L.polyline([], {weight:1, opacity:1, color:'red'}).addTo(map);
+    myPolyline = L.polyline([], {weight:2, opacity:1, color:'black'}).addTo(map);
     //myPolyline = L.polyline([]).addTo(map);
     polylines.push(myPolyline);
   }
@@ -252,6 +254,17 @@ map.on('mousemove', function(e) {
     myPolyline.addLatLng(e.latlng);
   }
 })
+
+
+function KeyPress(e) {
+      var evtobj = window.event? event : e
+      if (evtobj.keyCode == 90 && evtobj.ctrlKey) {
+          //alert("Ctrl+z");
+          clearLines();
+      }
+}
+
+document.onkeydown = KeyPress;
 
 </script>
 
