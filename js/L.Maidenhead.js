@@ -87,6 +87,21 @@ L.Maidenhead = L.LayerGroup.extend({
 
             var bounds = [[lat,lon],[lat+unit,lon+(unit*2)]];
 
+
+
+            var num_xdiv = 4;
+            var num_ydiv = 4;
+
+            for (var i = 0; i<num_ydiv; i++) {
+              console.log("i=",i);
+              this.addLayer(L.polyline([[lat+i*unit/4,lon],[lat+i*unit/4,lon+(unit*2)]], {color: subcolor, weight: .5, dashArray: dashArray, dashOffset: '0', fill:false, interactive: false}).addTo(map));
+            }
+
+            for (var i = 0; i<num_xdiv; i++) {
+              console.log("i=",i);
+              this.addLayer(L.polyline([[lat,lon+i*(unit*2/4)],[lat+unit,lon+i*(unit*2/4)]], {color: subcolor, weight: .5, dashArray: dashArray, dashOffset: '0', fill:false, interactive: false}).addTo(map));
+            }
+
             var b1 = [[lat,lon],[lat+unit/2,lon+unit]];
             var b2 = [[lat+unit/2,lon],[lat+unit,lon+unit]];
             var b3 = [[lat,lon+unit],[lat+unit/2,lon+(unit*2)]];
@@ -100,14 +115,16 @@ L.Maidenhead = L.LayerGroup.extend({
             console.log("left,right:",squareLeft,squareRight);
             console.log("top,bottom:",squareTop,squareBottom)
             
-            
-            
             boundscolor =  'rgba(255, 0, 0, 0.4)';
+           
+            // sub-division of lines 
             var subcolor = 'rgba(0, 0, 0, 1)';
             var dashArray = '10, 10';
+            /*
             this.addLayer(L.rectangle(b1, {color: subcolor, weight: .5, dashArray: dashArray, dashOffset: '0', fill:false, interactive: false}));
             this.addLayer(L.rectangle(b2, {color: subcolor, weight: .5, dashArray: dashArray, dashOffset: '0', fill:false, interactive: false}));
             this.addLayer(L.rectangle(b3, {color: subcolor, weight: .5, dashArray: dashArray, dashOffset: '0', fill:false, interactive: false}));
+            */
 
             this.addLayer(L.rectangle(bounds, {color: this.options.color, weight: .5, fill:false, interactive: false}));
 			//var pont = map.latLngToLayerPoint([lat,lon]);

@@ -138,6 +138,23 @@
         L.marker(new L.LatLng(lat, lng)).addTo(map)
     }
 
+
+let paintMode = false;
+var myPolyline;
+
+map.on('click', function() {
+  paintMode = !paintMode;
+  if (paintMode) {
+    myPolyline = L.polyline([]).addTo(map);
+  }
+})
+
+map.on('mousemove', function(e) {
+  if (paintMode) {
+    myPolyline.addLatLng(e.latlng);
+  }
+})
+
 </script>
 
 
