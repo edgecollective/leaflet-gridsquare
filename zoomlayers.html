@@ -31,10 +31,14 @@
     <br/>
     <br/>
     <b>Zoom to:</b>
-    <input type="button" onclick="zoomConant()" value="10 Conant"/>
+    <input type="button" onclick="zoom10Conant()" value="10 Conant"/>
+    <input type="button" onclick="zoom23Conant()" value="23 Conant"/>
     <br/>
     <b>Annotations:</b>
     <input type="button" onclick="clearLines()" value="Undo Last Annotation"/>
+    <br/>
+    <b>Gridsquare:</b>
+    <input type="button" onclick="showGrid()" value="show"/> <input type="button" onclick="hideGrid()" value="hide"/>
     <br/>
 
 <!--<div id="map" style="width: 1500px; height: 1000px;"></div>-->
@@ -145,13 +149,19 @@ var googleTerrain = L.tileLayer('http://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={
 	}).addTo(map);
 */
     
-/*
+gridGroup = L.layerGroup();
+this.gridGroup.addLayer(
     L.maidenhead({
                 //color : 'rgba(255, 0, 0, 0.4)'
                 color : 'rgba(0, 0, 0, 1)'
-            }).addTo(map);
-*/
+            }));
 
+function showGrid() {
+    gridGroup.addTo(map);
+}
+function hideGrid() {
+gridGroup.removeFrom(map);
+}
     /*
 	L.marker([51.5, -0.09]).addTo(map)
 		.bindPopup("<b>Hello world!</b><br />I am a popup.").openPopup();
@@ -182,9 +192,16 @@ var googleTerrain = L.tileLayer('http://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={
 	map.on('click', onMapClick);
     */
 
-    function zoomConant() {
+    function zoom10Conant() {
         var lat = 42.41179620900759;
         var lng = -71.29800936369796;
+        map.panTo(new L.LatLng(lat, lng));
+        map.setView(new L.LatLng(lat, lng),max_zoom);
+    }
+
+    function zoom23Conant() {
+        var lat = 42.40964120712829;
+        var lng = -71.29903124833108;
         map.panTo(new L.LatLng(lat, lng));
         map.setView(new L.LatLng(lat, lng),max_zoom);
     }
