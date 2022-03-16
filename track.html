@@ -180,8 +180,7 @@ var lons = [];
 var min_lat = parseFloat(jsonfile[0].lat)/10000000;
 var max_lat = min_lat;
 
-for(var i=1;i<(jsonfile.length-1);i++){
-
+for(var i=1;i<(jsonfile.length-1);i+=10){
 
 lat = parseFloat(jsonfile[i].lat)/10000000;
 lon = parseFloat(jsonfile[i].lon)/10000000;
@@ -220,7 +219,7 @@ var greenIcon = new L.Icon({
 });
 
 
-if (i==917) {
+if (i==881) {
 
     var photoImg = '<img src="img/pigeon_2.jpg" height="150px" width="150px"/>';
 
@@ -230,7 +229,8 @@ if (i==917) {
 
 }
 
-if (i==143) {
+// stone wall 
+if (i==161) {
 
 var photoImg = '<img src="img/stone_wall.jpg" height="150px" width="150px"/>';
 
@@ -240,7 +240,7 @@ L.marker([lat, lon],{icon: greenIcon}).addTo(map)
 
 }
 
-if (i==2050) {
+if (i==2051) {
 
 var photoImg = '<img src="img/pigeon_1.jpg" height="150px" width="150px"/>';
 
@@ -251,7 +251,7 @@ L.marker([lat, lon],{icon: greenIcon}).addTo(map)
 }
 
 // horse ring
-if (i==1664) {
+if (i==1671) {
 
 var photoImg = '<img src="img/horse_ring.jpg" height="150px" width="150px"/>';
 
@@ -262,7 +262,7 @@ L.marker([lat, lon],{icon: greenIcon}).addTo(map)
 }
 
 // victor path 
-if (i==279) {
+if (i==281) {
 
 var photoImg = '<img src="img/stump_path.jpg" height="150px" width="150px"/>';
 
@@ -272,7 +272,7 @@ L.marker([lat, lon],{icon: greenIcon}).addTo(map)
 
 }
 
-if (i==1466) {
+if (i==1471) {
 
 var photoImg = '<img src="img/horse_bridge.jpg" height="150px" width="150px"/>';
 
