@@ -128,7 +128,8 @@ L.Maidenhead = L.LayerGroup.extend({
 
             this.addLayer(L.rectangle(bounds, {color: this.options.color, weight: .5, fill:false, interactive: false}));
 			//var pont = map.latLngToLayerPoint([lat,lon]);
-			//console.log(pont.x);
+      //console.log(pont.x);
+      //cons
 			this.addLayer(this._getLabel(lon+unit-(unit/lcor),lat+(unit/2)+(unit/lcor*c)));
 			}
 		}
