@@ -8,7 +8,7 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	
-	<link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
+	<!--<link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />-->
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin=""/>
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
@@ -19,7 +19,7 @@
 </head>
 <body>
 
-<div id="map" style="width: 1000px; height: 500px;"></div>
+<div id="map" style="width: 900px; height: 500px;"></div>
 
 <script>
 
@@ -40,7 +40,22 @@ function csvJSON(headers,csv){
     //return JSON.stringify(result); //JSON
 }
 </script>
+<script>
+    function median(values){
+  if(values.length ===0) throw new Error("No inputs");
 
+  values.sort(function(a,b){
+    return a-b;
+  });
+
+  var half = Math.floor(values.length / 2);
+  
+  if (values.length % 2)
+    return values[half];
+  
+  return (values[half - 1] + values[half]) / 2.0;
+}
+</script>
 <script>
 
     // conant
@@ -144,41 +159,78 @@ this.gridGroup.addLayer(
 
 var ave_lat=0;
 var ave_lon=0;
+var lats = [];
+var lons = [];
+
+var min_lat = parseFloat(jsonfile[0].lat)/10000000;
+var max_lat = min_lat;
 
 for(var i=1;i<(jsonfile.length-1);i++){
+
 
 lat = parseFloat(jsonfile[i].lat)/10000000;
 lon = parseFloat(jsonfile[i].lon)/10000000;
 
+if (lat < min_lat) {
+    min_lat = lat
+}
+if (lat > max_lat) {
+    max_lat = lat 
+}
+
+lats.push(lat);
+lons.push(lon);
 ave_lat=ave_lat+lat;
 ave_lon=ave_lon+lon;
 
 //console.log("lat:",lat);
 
+if ((i < 1850) || (i > 1965)) {
 
 L.circle([lat, lon], 1, {
-		color: 'red',
+		color: 'green',
 		fillColor: '#f03',
 		fillOpacity: 0.5
 }).addTo(map).bindPopup(i.toString());
 
 if (i==917) {
 
+var greenIcon = new L.Icon({
+  iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
+  shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowSize: [41, 41]
+});
     //var photoImg = '<img src="https://static.pexels.com/photos/189349/pexels-photo-189349.jpeg" height="150px" width="150px"/>';
     var photoImg = '<img src="img/pigeon_2.jpg" height="150px" width="150px"/>';
 
-    L.marker([lat, lon]).addTo(map)
+    L.marker([lat, lon],{icon: greenIcon}).addTo(map)
         .bindPopup("<center>Pigeon House</center>" + "</br>"+ photoImg);
 		//.bindPopup("<b>Hello world!</b><br />I am a popup.")
 
 }
 
 }
+}
+
 ave_lat=ave_lat/(jsonfile.length-1);
 ave_lon=ave_lon/(jsonfile.length-1);
+
+median_lat = median(lats);
+median_lon = median(lons);
+
+//median_lat = (max_lat-min_lat)/2. + min_lat;
+
+console.log(median_lat,median_lon);
 console.log(ave_lat,ave_lon);
-map.panTo(new L.LatLng(ave_lat,ave_lon));
-map.setZoom(16);
+
+
+//L.marker([median_lat, median_lon],{icon: greenIcon}).addTo(map);
+
+map.setView(new L.LatLng(median_lat,median_lon),16);
+map.setZoom(17);
 //map.setView(new L.LatLng(ave_lat,ave_lon),15);
 })
 
