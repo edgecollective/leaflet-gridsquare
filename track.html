@@ -19,7 +19,7 @@
 </head>
 <body>
 
-<div id="map" style="width: 900px; height: 500px;"></div>
+<div id="map" style="width: 900px; height: 450px;"></div>
 
 <script>
 
@@ -185,25 +185,28 @@ ave_lon=ave_lon+lon;
 
 //console.log("lat:",lat);
 
-if ((i < 1850) || (i > 1965)) {
+if ((i < 1847) || (i > 1970)) {
 
+if ((i < 400) || (i > 880))  {
 L.circle([lat, lon], 1, {
 		color: 'green',
 		fillColor: '#f03',
 		fillOpacity: 0.5
 }).addTo(map).bindPopup(i.toString());
 
-if (i==917) {
 
 var greenIcon = new L.Icon({
-  iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
+  iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
   shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
   iconSize: [25, 41],
   iconAnchor: [12, 41],
   popupAnchor: [1, -34],
   shadowSize: [41, 41]
 });
-    //var photoImg = '<img src="https://static.pexels.com/photos/189349/pexels-photo-189349.jpeg" height="150px" width="150px"/>';
+
+
+if (i==917) {
+
     var photoImg = '<img src="img/pigeon_2.jpg" height="150px" width="150px"/>';
 
     L.marker([lat, lon],{icon: greenIcon}).addTo(map)
@@ -212,6 +215,61 @@ var greenIcon = new L.Icon({
 
 }
 
+if (i==143) {
+
+var photoImg = '<img src="img/stone_wall.jpg" height="150px" width="150px"/>';
+
+L.marker([lat, lon],{icon: greenIcon}).addTo(map)
+    .bindPopup("<center>Stone Wall</center>" + "</br>"+ photoImg);
+    //.bindPopup("<b>Hello world!</b><br />I am a popup.")
+
+}
+
+if (i==2050) {
+
+var photoImg = '<img src="img/pigeon_1.jpg" height="150px" width="150px"/>';
+
+L.marker([lat, lon],{icon: greenIcon}).addTo(map)
+    .bindPopup("<center>Brook Bridge</center>" + "</br>"+ photoImg);
+    //.bindPopup("<b>Hello world!</b><br />I am a popup.")
+
+}
+
+// horse ring
+if (i==1664) {
+
+var photoImg = '<img src="img/horse_ring.jpg" height="150px" width="150px"/>';
+
+L.marker([lat, lon],{icon: greenIcon}).addTo(map)
+    .bindPopup("<center>Horse Ring</center>" + "</br>"+ photoImg);
+    //.bindPopup("<b>Hello world!</b><br />I am a popup.")
+
+}
+
+// victor path 
+if (i==279) {
+
+var photoImg = '<img src="img/stump_path.jpg" height="150px" width="150px"/>';
+
+L.marker([lat, lon],{icon: greenIcon}).addTo(map)
+    .bindPopup("<center>Stump path</center>" + "</br>"+ photoImg);
+    //.bindPopup("<b>Hello world!</b><br />I am a popup.")
+
+}
+
+if (i==1466) {
+
+var photoImg = '<img src="img/horse_bridge.jpg" height="150px" width="150px"/>';
+
+L.marker([lat, lon],{icon: greenIcon}).addTo(map)
+    .bindPopup("<center>Horse Bridge</center>" + "</br>"+ photoImg);
+    //.bindPopup("<b>Hello world!</b><br />I am a popup.")
+
+}
+
+
+
+}
 }
 }
 
@@ -229,7 +287,7 @@ console.log(ave_lat,ave_lon);
 
 //L.marker([median_lat, median_lon],{icon: greenIcon}).addTo(map);
 
-map.setView(new L.LatLng(median_lat,median_lon),16);
+map.setView(new L.LatLng(median_lat,median_lon),17);
 //map.setView(new L.LatLng(ave_lat,ave_lon),15);
 })
 
