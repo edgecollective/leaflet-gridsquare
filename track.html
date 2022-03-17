@@ -162,6 +162,7 @@ fetch('GPS.CSV')
 	});
 
     // placeholders for the L.marker and L.circle representing user's current position and accuracy    
+   /* 
     var current_position, current_accuracy;
 
     function onLocationFound(e) {
@@ -182,7 +183,7 @@ fetch('GPS.CSV')
       //current_position = L.marker(e.latlng).addTo(map)
         //.bindPopup("You are within " + radius + " meters from this point").openPopup();
 
-      current_accuracy = L.circle(e.latlng, radius).addTo(map);
+      //current_accuracy = L.circle(e.latlng, radius).addTo(map);
     }
 
     function onLocationError(e) {
@@ -191,7 +192,6 @@ fetch('GPS.CSV')
 
     map.on('locationfound', onLocationFound);
     map.on('locationerror', onLocationError);
-
     // wrap map.locate in a function    
     function locate() {
       map.locate({setView: false, maxZoom: 16});
@@ -199,6 +199,7 @@ fetch('GPS.CSV')
 
     // call locate every 3 seconds... forever
     setInterval(locate, 3000);
+*/
 
 /*
     gridGroup = L.layerGroup();
