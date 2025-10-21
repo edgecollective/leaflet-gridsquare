@@ -29,19 +29,18 @@
     <!-- Lat, Lon: <input type="text" name="latlon" id="latlon"/>
     <input type="button" onclick="zoomParse()" value="add marker"/> -->
    
-   
     <b>Zoom to:</b>
     <input type="button" onclick="zoom_10_Conant()" value="10 Conant"/>
     <input type="button" onclick="zoom_54_Conant()" value="54 Conant"/>
     <input type="button" onclick="zoom_8_HawkHill()" value="8 Hawk Hill"/>
     <input type="button" onclick="zoom_59_Weston()" value="59 Weston"/>
     <input type="button" onclick="zoom_12_Acorn()" value="12 Acorn"/>
-    <input type="button" onclick="highlight_54_Conant_and_8_HawkHill()" value="54 Conant to 8 Hawk Hill"/>
+    
 
     <br/>
 
 <!--<div id="map" style="width: 1500px; height: 1000px;"></div>-->
-<div id="map" style="width: 1300px; height: 700px;"></div>
+<div id="map" style="width: 1300px; height: 500px;"></div>
 <script>
 
     // conant
@@ -79,62 +78,19 @@
 	//L.tileLayer(topo_tiles, {
     L.tileLayer(my_tiles, {
 				maxZoom: max_zoom,
-		
+		attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
+			'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
 		id: 'mapbox/streets-v11',
 		tileSize: 512,
 		zoomOffset: -1
 	}).addTo(map);
-	
-	 var lat0 = 42.41179620900759;
-        var lng0 = -71.29800936369796;
-        
-	var lat = 42.40960491839132;
-        var lng = -71.29415422883557;
-        
-        
-        var lat2 = 42.3998835232602;
-        var lng2 = -71.2852825402667;
-        
-        
-        var my_radius=9;
-        
-        L.circle([lat0, lng0], {
-		color: 'red',
-		fillColor: '#f03',
-		fillOpacity: 0.5,
-		radius: my_radius
-	}).addTo(map);
-        
-         L.circle([lat, lng], {
-		color: 'red',
-		fillColor: '#f03',
-		fillOpacity: 0.5,
-		radius: my_radius
-	}).addTo(map);
-        
-        L.circle([lat2, lng2], {
-		color: 'red',
-		fillColor: '#f03',
-		fillOpacity: 0.5,
-		radius: my_radius
-	}).addTo(map);
-	
-	/*
-	L.circle([lat2, lng2], {
-		color: 'red',
-		fillColor: '#f03',
-		fillOpacity: 0.5,
-		radius: 5
-	}).addTo(map);
-	*/
-	
 
-    /*
+    
     L.maidenhead({
                 //color : 'rgba(255, 0, 0, 0.4)'
                 color : 'rgba(0, 0, 0, 1)'
             }).addTo(map);
-*/
+
 
     /*
 	L.marker([51.5, -0.09]).addTo(map)
@@ -171,42 +127,6 @@
         var lng = -71.29800936369796;
         map.panTo(new L.LatLng(lat, lng));
         map.setView(new L.LatLng(lat, lng),max_zoom);
-    }
-    
-    
-    
-     function highlight_54_Conant_and_8_HawkHill() {
-    
-     /* var lat = 42.41852266352764;
-    var lng = -71.30118885180983;*/
-    
-    
-    var lat = 42.40960491839132;
-        var lng = -71.29415422883557;
-        
-        var lat2 = 42.3998835232602;
-        var lng2 = -71.2852825402667;
-        
-        L.circle([lat, lng], {
-		color: 'red',
-		fillColor: '#f03',
-		fillOpacity: 0.5,
-		radius: 5
-	}).addTo(map);
-	
-	L.circle([lat2, lng2], {
-		color: 'red',
-		fillColor: '#f03',
-		fillOpacity: 0.5,
-		radius: 5
-	}).addTo(map);
-	
-	
-		
-		
-	
-		
-		
     }
     
     

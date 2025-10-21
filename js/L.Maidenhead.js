@@ -9,7 +9,7 @@ L.Maidenhead = L.LayerGroup.extend({
 		// Line and label color
 		color: 'rgba(255, 0, 0, 0.4)',
 		// Redraw on move or moveend
-		redraw: 'move'
+		redraw: 'moveend'
 	},
 
 	initialize: function (options) {
@@ -102,35 +102,25 @@ L.Maidenhead = L.LayerGroup.extend({
               this.addLayer(L.polyline([[lat,lon+i*(unit*2/4)],[lat+unit,lon+i*(unit*2/4)]], {color: subcolor, weight: .5, dashArray: dashArray, dashOffset: '0', fill:false, interactive: false}).addTo(map));
             }
 */
-            var b1 = [[lat,lon],[lat+unit/2,lon+unit]];
-            var b2 = [[lat+unit/2,lon],[lat+unit,lon+unit]];
-            var b3 = [[lat,lon+unit],[lat+unit/2,lon+(unit*2)]];
-
-
             var squareLeft = lon;
             var squareBottom = lat;
             var squareTop = lat+unit;
             var squareRight = lon+(unit*2);
+            var centerLon = lon+unit;
+            var centerLat = lat+(unit/2);
             
             console.log("left,right:",squareLeft,squareRight);
             console.log("top,bottom:",squareTop,squareBottom)
             
             boundscolor =  'rgba(255, 0, 0, 0.4)';
            
-            // sub-division of lines 
-            var subcolor = 'rgba(0, 0, 0, 1)';
-            var dashArray = '10, 10';
-            
-            this.addLayer(L.rectangle(b1, {color: subcolor, weight: .5, dashArray: dashArray, dashOffset: '0', fill:false, interactive: false}));
-            this.addLayer(L.rectangle(b2, {color: subcolor, weight: .5, dashArray: dashArray, dashOffset: '0', fill:false, interactive: false}));
-            this.addLayer(L.rectangle(b3, {color: subcolor, weight: .5, dashArray: dashArray, dashOffset: '0', fill:false, interactive: false}));
             
 
             this.addLayer(L.rectangle(bounds, {color: this.options.color, weight: .5, fill:false, interactive: false}));
 			//var pont = map.latLngToLayerPoint([lat,lon]);
       //console.log(pont.x);
       //cons
-			this.addLayer(this._getLabel(lon+unit-(unit/lcor),lat+(unit/2)+(unit/lcor*c)));
+			this.addLayer(this._getLabel(lon+unit,lat+(unit/2)));
 			}
 		}
 		return this;
@@ -142,7 +132,7 @@ L.Maidenhead = L.LayerGroup.extend({
       console.log("zoom:",zoom);
 
       var size = title_size[zoom]+'px';
-      var title = '<span style="cursor: default;"><font style="color:'+this.options.color+'; font-size:'+size+'; font-weight: 900; ">' + this._getLocator(lon,lat) + '</font></span>';
+      var title = '<div style="position: absolute; transform: translate(-50%, -50%); white-space: nowrap; cursor: default; text-align: center;"><font style="color:'+this.options.color+'; font-size:'+size+'; font-weight: 900;">' + this._getLocator(lon,lat) + '</font></div>';
       
       /*
       if(zoom>15) {
@@ -152,7 +142,12 @@ L.Maidenhead = L.LayerGroup.extend({
         var title = '<span style="cursor: default;"><font style="color:'+this.options.color+'; font-size:'+size+'; font-weight: 900; ">' + this._getLocator(lon,lat) + '</font></span>';
       }
       */
-      var myIcon = L.divIcon({className: 'my-div-icon', html: title});
+      var myIcon = L.divIcon({
+          className: 'my-div-icon', 
+          html: title,
+          iconSize: [0, 0],
+          iconAnchor: [0, 0]
+      });
       var marker = L.marker([lat,lon], {icon: myIcon}, clickable=false);
       return marker;
 	},
@@ -196,3 +191,4 @@ L.Maidenhead = L.LayerGroup.extend({
 L.maidenhead = function (options) {
 	return new L.Maidenhead(options);
 };
+/* Cache buster: Mon Oct 20 02:18:24 PM EDT 2025 */

@@ -30,18 +30,9 @@
     <input type="button" onclick="zoomParse()" value="add marker"/> -->
    
    
-    <b>Zoom to:</b>
-    <input type="button" onclick="zoom_10_Conant()" value="10 Conant"/>
-    <input type="button" onclick="zoom_54_Conant()" value="54 Conant"/>
-    <input type="button" onclick="zoom_8_HawkHill()" value="8 Hawk Hill"/>
-    <input type="button" onclick="zoom_59_Weston()" value="59 Weston"/>
-    <input type="button" onclick="zoom_12_Acorn()" value="12 Acorn"/>
-    <input type="button" onclick="highlight_54_Conant_and_8_HawkHill()" value="54 Conant to 8 Hawk Hill"/>
-
-    <br/>
 
 <!--<div id="map" style="width: 1500px; height: 1000px;"></div>-->
-<div id="map" style="width: 1300px; height: 700px;"></div>
+<div id="map" style="width: 1500px; height: 1000px;"></div>
 <script>
 
     // conant
@@ -104,6 +95,11 @@
 		fillOpacity: 0.5,
 		radius: my_radius
 	}).addTo(map);
+	
+	 L.popup()
+		.setLatLng([lat0, lng0])
+		.setContent('<b>10 Conant</b><br />')
+		.openOn(map);
         
          L.circle([lat, lng], {
 		color: 'red',
